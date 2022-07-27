@@ -1,4 +1,18 @@
-Using [Tesseract] to interpret images in-browser. Also help from [rollup]
+Simulating an elevator. Also help from [rollup] and [pico]
 
-[Tesseract]: https://github.com/naptha/tesseract.js
 [rollup]: https://rollupjs.org/guide/en/
+
+## Run build locally
+
+```bash
+npm run build
+```
+
+## Serve files locally
+
+```
+npm run serve
+```
+
+[rollup]: https://rollupjs.org/guide/en/
+[pico]: https://picocss.com/docs/
