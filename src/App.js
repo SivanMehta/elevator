@@ -15,7 +15,7 @@ function Buttons ({setFloor}) {
 }
 
 function App() {
-  const [floor, setFloor] = useState(0);
+  const [floor, setFloor] = useState(FLOORS - 1);
 
   return (
     <div className="grid">

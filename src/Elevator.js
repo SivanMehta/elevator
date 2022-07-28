@@ -8,16 +8,20 @@ function Pulleys({ floor }) {
   const leftCenter = offset * 2.5 + width / 4;
   return (
     <g>
-      {/* left pulley */}
+      {/* left pulley / cable */}
       <circle cx={leftCenter} cy={offset / 2} r={ offset / 2} className="pulley"/>
-      <line className='cable'
-        x1={offset * 2 + width / 4} y1={offset / 2}
-        x2={offset * 2 + width / 4} y2={ floor * FLOOR_HEIGHT + offset  }/>
-      {/* right pulley */}
+      <rect className='cable'
+        x={leftCenter - offset / 2 - 1}
+        y={offset / 2}
+        width="2"
+        height={floor * FLOOR_HEIGHT + offset / 2} />
+      {/* right pulley / cable */}
       <circle cx={width - offset * 1.5} cy={offset / 2} r={ offset / 2 } className="pulley"/>
-      <line className='cable'
-        x1={width - offset} y1={offset / 2}
-        x2={width - offset} y2={ (FLOORS - floor - 1) * FLOOR_HEIGHT + offset  }/>
+      <rect className='cable'
+        x={width - offset - 1}
+        y={offset / 2}
+        width="2"
+        height={(FLOORS - floor - 1) * FLOOR_HEIGHT + offset / 2} />
       <rect className="counterweight" x={ width - offset * 1.5 } y={ (FLOORS - floor - 1) * FLOOR_HEIGHT + offset } width={ offset } height={FLOOR_HEIGHT} />
     </g>
   )
@@ -37,7 +41,7 @@ export default function Elevator({ floor }) {
   return (
     <svg width={ width } height={ FLOORS * FLOOR_HEIGHT + offset * 2 }>
       <rect className="background" width={ width } height={ FLOORS * FLOOR_HEIGHT + offset * 2}></rect>
-      <rect className="carriage" x={ offset * 2 } y={ floor * FLOOR_HEIGHT + offset } width={ width * .8 } height={FLOOR_HEIGHT} />
+      <rect className="carriage" x={ offset * 2 } y={ floor * FLOOR_HEIGHT + offset } width={ width / 2 } height={FLOOR_HEIGHT} />
       <Labels />
       <Pulleys floor={ floor } />
     </svg>

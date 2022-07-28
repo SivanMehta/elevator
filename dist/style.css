@@ -16,11 +16,15 @@ text {
 
 .pulley {
   stroke: black;
-  stroke-width: 1;
+  stroke-width: 2;
   fill: red;
 }
 
 .cable {
-  stroke: black;
-  stroke-width: 1;
+  fill: black;
+  stroke: none;
+}
+
+.carriage, .counterweight, .cable {
+  transition: all 0.5s ease-in-out !important;
 }
