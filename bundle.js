@@ -7675,16 +7675,51 @@
 	}
 	});
 
-	const FLOORS = 5;
+	const FLOORS = 7;
 	const FLOOR_HEIGHT = 120;
 
 	const offset = 20;
 	const width = 360;
 
+	function Pulleys({
+	  floor
+	}) {
+	  const leftCenter = offset * 2.5 + width / 4;
+	  return /*#__PURE__*/react.createElement("g", null, /*#__PURE__*/react.createElement("circle", {
+	    cx: leftCenter,
+	    cy: offset / 2,
+	    r: offset / 2,
+	    className: "pulley"
+	  }), /*#__PURE__*/react.createElement("rect", {
+	    className: "cable",
+	    x: leftCenter - offset / 2 - 1,
+	    y: offset / 2,
+	    width: "2",
+	    height: floor * FLOOR_HEIGHT + offset / 2
+	  }), /*#__PURE__*/react.createElement("circle", {
+	    cx: width - offset * 1.5,
+	    cy: offset / 2,
+	    r: offset / 2,
+	    className: "pulley"
+	  }), /*#__PURE__*/react.createElement("rect", {
+	    className: "cable",
+	    x: width - offset - 1,
+	    y: offset / 2,
+	    width: "2",
+	    height: (FLOORS - floor - 1) * FLOOR_HEIGHT + offset / 2
+	  }), /*#__PURE__*/react.createElement("rect", {
+	    className: "counterweight",
+	    x: width - offset * 1.5,
+	    y: (FLOORS - floor - 1) * FLOOR_HEIGHT + offset,
+	    width: offset,
+	    height: FLOOR_HEIGHT
+	  }));
+	}
+
 	function Labels() {
 	  return new Array(FLOORS).fill(0).map((_, floor) => /*#__PURE__*/react.createElement("text", {
 	    key: `label-${floor}`,
-	    "text-anchor": "middle",
+	    textAnchor: "middle",
 	    x: offset,
 	    y: floor * FLOOR_HEIGHT + FLOOR_HEIGHT / 2 + offset
 	  }, FLOORS - floor));
@@ -7695,18 +7730,20 @@
 	}) {
 	  return /*#__PURE__*/react.createElement("svg", {
 	    width: width,
-	    height: FLOORS * FLOOR_HEIGHT + offset
+	    height: FLOORS * FLOOR_HEIGHT + offset * 2
 	  }, /*#__PURE__*/react.createElement("rect", {
 	    className: "background",
 	    width: width,
-	    height: FLOORS * FLOOR_HEIGHT + offset
-	  }), /*#__PURE__*/react.createElement("g", null, /*#__PURE__*/react.createElement("rect", {
-	    className: "elevator",
+	    height: FLOORS * FLOOR_HEIGHT + offset * 2
+	  }), /*#__PURE__*/react.createElement("rect", {
+	    className: "carriage",
 	    x: offset * 2,
 	    y: floor * FLOOR_HEIGHT + offset,
-	    width: width - offset,
-	    height: "100"
-	  }), /*#__PURE__*/react.createElement(Labels, null)));
+	    width: width / 2,
+	    height: FLOOR_HEIGHT
+	  }), /*#__PURE__*/react.createElement(Labels, null), /*#__PURE__*/react.createElement(Pulleys, {
+	    floor: floor
+	  }));
 	}
 
 	function Buttons({
@@ -7723,7 +7760,7 @@
 	}
 
 	function App() {
-	  const [floor, setFloor] = react.useState(0);
+	  const [floor, setFloor] = react.useState(FLOORS - 1);
 	  return /*#__PURE__*/react.createElement("div", {
 	    className: "grid"
 	  }, /*#__PURE__*/react.createElement("div", null, /*#__PURE__*/react.createElement(Elevator, {
