@@ -1,32 +1,28 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { FLOORS } from './constants';
-
-function Elevator({ floor }) {
-  return <span>I am an elevator on floor {floor}</span>
-}
+import Elevator from './Elevator';
 
 function Buttons ({setFloor}) {
   return new Array(FLOORS).fill(0).map((_, i) => {
-    const floor = FLOORS - i;
     return (
       <button
-        onClick={() => setFloor(floor)}
+        onClick={() => setFloor(i)}
         key={i}
         href="#"
-        role="button">{ floor }</button>
+        role="button">{ FLOORS - i }</button>
     )
   });
 }
 
 function App() {
-  const [floor, setFloor] = useState(5);
+  const [floor, setFloor] = useState(0);
 
   return (
     <div className="grid">
       <div>
         <Elevator floor={floor}/>
       </div>
-      <div>
+      <div className='grid-fluid'>
         <Buttons setFloor={setFloor}/>
       </div>
     </div>

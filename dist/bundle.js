@@ -7677,35 +7677,62 @@
 	}
 	});
 
-	const FLOORS = 10;
+	const FLOORS = 5;
+	const FLOOR_HEIGHT = 120;
+
+	const offset = 20;
+	const width = 360;
+
+	function Labels() {
+	  return new Array(FLOORS).fill(0).map((_, floor) => /*#__PURE__*/react.createElement("text", {
+	    key: `label-${floor}`,
+	    "text-anchor": "middle",
+	    x: offset,
+	    y: floor * FLOOR_HEIGHT + FLOOR_HEIGHT / 2 + offset
+	  }, FLOORS - floor));
+	}
 
 	function Elevator({
 	  floor
 	}) {
-	  return /*#__PURE__*/react.createElement("span", null, "I am an elevator on floor ", floor);
+	  return /*#__PURE__*/react.createElement("svg", {
+	    width: width,
+	    height: FLOORS * FLOOR_HEIGHT + offset
+	  }, /*#__PURE__*/react.createElement("rect", {
+	    className: "background",
+	    width: width,
+	    height: FLOORS * FLOOR_HEIGHT + offset
+	  }), /*#__PURE__*/react.createElement("g", null, /*#__PURE__*/react.createElement("rect", {
+	    className: "elevator",
+	    x: offset * 2,
+	    y: floor * FLOOR_HEIGHT + offset,
+	    width: width - offset,
+	    height: "100"
+	  }), /*#__PURE__*/react.createElement(Labels, null)));
 	}
 
 	function Buttons({
 	  setFloor
 	}) {
 	  return new Array(FLOORS).fill(0).map((_, i) => {
-	    const floor = FLOORS - i;
 	    return /*#__PURE__*/react.createElement("button", {
-	      onClick: () => setFloor(floor),
+	      onClick: () => setFloor(i),
 	      key: i,
 	      href: "#",
 	      role: "button"
-	    }, floor);
+	    }, FLOORS - i);
 	  });
 	}
 
 	function App() {
-	  const [floor, setFloor] = react.useState(5);
+	  const [floor, setFloor] = react.useState(0);
 	  return /*#__PURE__*/react.createElement("div", {
 	    className: "grid"
 	  }, /*#__PURE__*/react.createElement("div", null, /*#__PURE__*/react.createElement(Elevator, {
 	    floor: floor
-	  })), /*#__PURE__*/react.createElement("div", null, /*#__PURE__*/react.createElement(Buttons, {
+	  })), /*#__PURE__*/react.createElement("div", {
+	    className: "grid-fluid"
+	  }, /*#__PURE__*/react.createElement(Buttons, {
 	    setFloor: setFloor
 	  })));
 	}
