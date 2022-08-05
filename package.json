@@ -5,7 +5,7 @@
   "scripts": {
     "build:watch": "rollup -c rollup.config.js -w",
     "build": "rollup -c rollup.config.js",
-    "serve": "python -m http.server 8080"
+    "serve": "cd dist/ && python -m http.server 8080"
   },
   "author": "",
   "license": "ISC",
