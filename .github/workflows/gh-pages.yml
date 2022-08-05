@@ -38,3 +38,4 @@ jobs:
         with:
           folder: dist
           target-folder: dist
+          clean: true
