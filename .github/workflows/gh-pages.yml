@@ -36,7 +36,6 @@ jobs:
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:
+          target-folder: dist
           folder: .
-          clean: true
-          clean-exclude: |
-            dist/*
+          
